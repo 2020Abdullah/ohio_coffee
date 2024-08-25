@@ -31,12 +31,17 @@ class MenuController extends Controller
             $menu->image = $menuImgPath;
         }
 
+        $desiredOrder = $request->input('order');
+
+        Menu::where('order', '>=', $desiredOrder)->increment('order');
+
         $menu->name_ar = $request->name_ar;
         $menu->name_en = $request->name_en;
         $menu->desc = $request->desc;
         $menu->price = $request->price;
         $menu->category_id  = $request->category_id;
         $menu->status  = $request->status;
+        $menu->order  = $request->order;
         $menu->save();
 
         toast('تم إضافة المنيو بنجاح', 'success');
@@ -51,6 +56,7 @@ class MenuController extends Controller
 
     public function update(MenuEditRequest $request){
         $menu = Menu::findOrFail($request->id);
+
         // upload file image 
         if($request->hasFile('image')){
             // delete old image 
@@ -75,6 +81,7 @@ class MenuController extends Controller
         $menu->price = $request->price;
         $menu->category_id  = $request->category_id;
         $menu->status  = $request->status;
+        $menu->order  = $request->order;
         $menu->save();
 
         toast('تم تحديث المنيو بنجاح', 'success');

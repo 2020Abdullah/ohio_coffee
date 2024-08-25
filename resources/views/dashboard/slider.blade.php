@@ -54,7 +54,7 @@
         <!-- slider setting -->
         <div class="card">
             <div class="card-header border-bottom">
-                <h4 class="card-title">إضافة صور لعرضها في الواجهة</h4>
+                <h4 class="card-title">إدارة سلايدر الصور</h4>
             </div>
             <div class="card-body py-2 my-25">
                 <div class="container">
@@ -66,31 +66,133 @@
                     </div>
                     @enderror
 
-                    <div class="slider-container">
-                        <div class="slider-overlay"></div>
-                        @foreach($images as $image)
-                        <img src="{{ asset($image->image_path) }}" class="slider-image">
-                        @endforeach
-                        <button class="slider-button prev" onclick="prevSlide()">&#10094;</button>
-                        <button class="slider-button next" onclick="nextSlide()">&#10095;</button>
+                    <div class="addSlider mb-2">
+                        <button class="btn-icon-content btn btn-success waves-effect waves-float waves-light" data-bs-toggle="modal" data-bs-target="#addSlider">
+                            <i class="fa fa-plus"></i>
+                            <span>إضافة صورة جديدة</span> 
+                       </button>
                     </div>
 
-                    <form method="POST" action="{{ route('slider.update') }}" enctype="multipart/form-data">
-                        @csrf
-                        <div class="row">
-                            <div class="col-12"></div>
-                            <div class="addImage">
-                                <input type="file" name="images[]" id="fileInput" accept="image/*" multiple style="display: none;">
-                                <button type="button" class="btn btn-primary waves-effect waves-float waves-light" onclick="document.getElementById('fileInput').click();">
-                                    إضافة صور جديدة
-                                </button>
-                                <div id="imagePreview" class="image-preview"></div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>الترتيب</th>
+                                <th>الصورة</th>
+                                <th>إجراء</th>
+                            </tr>
+                            <tr>
+                                @foreach ($images as $image)
+                                    <tr>
+                                        <td>{{ $image->order }}</td>
+                                        <td>
+                                            <img src="{{ asset($image->image_path) }}" width="80" height="80" alt="slider">
+                                        </td>
+                                        <td>
+                                            <a class="editBtn btn btn-success mb-1 waves-effect waves-float waves-light" href="#" data-bs-toggle="modal" data-order="{{ $image->order }}" data-path="{{ asset($image->image_path) }}" data-id="{{ $image->id }}" data-bs-target="#editSlider">
+                                                <i data-feather='edit'></i>
+                                                <span>تعديل</span>
+                                            </a>
+                                            <a class="delBtn btn btn-danger mb-1 waves-effect waves-float waves-light" data-id="{{ $image->id }}" href="#" data-bs-toggle="modal" data-id="{{ $image->id }}" data-bs-target="#deleteSlider">
+                                                <i data-feather='trash-2'></i>
+                                                <span>حذف</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tr>
+                        </table>
+                    </div> 
+
+                    <!-- model add slider images -->
+                    <div class="modal modal-slide-in fade" id="addSlider" aria-modal="true" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <form method="POST" action="{{ route('slider.add') }}" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="modal-header mb-1">
+                                        <h5 class="modal-title" id="exampleModalLabel">إضافة صور جديدة</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">×</button>
+                                    </div>
+                                    <div class="modal-body flex-grow-1">
+                                        <div class="mb-2">
+                                            <label class="form-label">ترتيب الظهور</label>
+                                            <input type="number" name="order" class="form-control">
+                                        </div>
+                                        <div class="addImage">
+                                            <input type="file" name="image" id="fileInput" accept="image/*" style="display: none;">
+                                            <button type="button" class="btn btn-primary waves-effect waves-float waves-light" onclick="document.getElementById('fileInput').click();">
+                                                إضافة صور جديدة
+                                            </button>
+                                            <div id="imagePreview" class="image-preview"></div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-success me-1 data-submit waves-effect waves-float waves-light">حفظ البيانات</button>
+                                        <button type="reset" class="btn btn-outline-secondary waves-effect" data-bs-dismiss="modal">إلغاء</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                        <div class="mt-3">
-                            <button class="btn btn-success waves-effect waves-float waves-light">حفظ البيانات</button>
+                    </div>
+
+                    <!-- model edit slider image -->
+                    <div class="modal modal-slide-in fade" id="editSlider" aria-modal="true" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content pt-0">
+                                <form method="POST" action="{{ route('slider.update') }}" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="hidden" name="id" class="id">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">تعديل الصورة</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">×</button>
+                                    </div>
+                                    <div class="modal-body mt-2">
+                                        <img src="" class="modalImage" style="max-width: 100%; height: 100px;" alt="sliderImg">
+                                        <div class="mb-1">
+                                            <label class="form-label">ترتيب الظهور</label>
+                                            <input type="text" class="form-control order" name="order">
+                                        </div>
+                                        <div class="mb-1">
+                                            <label class="form-label">تعديل الصورة</label>
+                                            <input type="file" class="form-control" name="image">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-success me-1 data-submit waves-effect waves-float waves-light">حفظ البيانات</button>
+                                        <button type="reset" class="btn btn-outline-secondary waves-effect" data-bs-dismiss="modal">إلغاء</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                    </form>
+                    </div>
+
+                    <!-- model delete confirm slider -->
+                    <div class="modal fade" id="deleteSlider" aria-modal="true" role="dialog">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalCenterTitle">تنبيه هام !</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <form method="POST" action="{{ route('slider.delete') }}">
+                                    <div class="modal-body">
+                                        @csrf
+                                        <input type="hidden" name="id" class="id">
+                                        <div class="modal-body">
+                                            <div class="mb-1">
+                                                <p>هل تريد بالفعل حذف هذه الصورة ؟</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-danger me-1 data-submit waves-effect waves-float waves-light">تأكيد</button>
+                                        <button type="reset" class="btn btn-outline-secondary waves-effect" data-bs-dismiss="modal">إلغاء</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -124,27 +226,21 @@
         }
     });
 
-    // show images
+    // edit image
+    $(".editBtn").on('click', function(){
+        let id = $(this).attr('data-id');
+        let order = $(this).attr('data-order');
+        var imageUrl = $(this).data('path');
+        $("#editSlider .id").val(id);
+        $("#editSlider .order").val(order);
+        $('#editSlider .modalImage').attr('src', imageUrl);
 
-    let slideIndex = 0;
-    const slides = document.querySelectorAll('.slider-image');
+    })
 
-    function showSlide(index) {
-        slides.forEach((slide, i) => {
-            slide.style.opacity = i === index ? '1' : '0';
-        });
-    }
-
-    function nextSlide() {
-        slideIndex = (slideIndex + 1) % slides.length;
-        showSlide(slideIndex);
-    }
-
-    function prevSlide() {
-        slideIndex = (slideIndex - 1 + slides.length) % slides.length;
-        showSlide(slideIndex);
-    }
-
-    showSlide(slideIndex); // Initialize the first slide
+    // delete image
+    $(".delBtn").on('click', function(){
+        let id = $(this).attr('data-id');
+        $("#deleteSlider .id").val(id);
+    })
 </script>
 @endsection

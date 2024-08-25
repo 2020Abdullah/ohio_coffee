@@ -47,7 +47,7 @@
                 <tbody>
                     @forelse ($list_category as $cate)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $cate->order }}</td>
                             <td>{{ $cate->name }}</td>
                             <td>
                                 @if ($cate->status == 1)
@@ -57,7 +57,7 @@
                                 @endif
                             </td>
                             <td>
-                                <a class="editBtn btn btn-success mb-1 waves-effect waves-float waves-light" href="#" data-bs-toggle="modal" data-name="{{ $cate->name }}" data-id="{{ $cate->id }}" data-bs-target="#editCate">
+                                <a class="editBtn btn btn-success mb-1 waves-effect waves-float waves-light" href="#" data-bs-toggle="modal" data-order="{{ $cate->order }}" data-name="{{ $cate->name }}" data-id="{{ $cate->id }}" data-bs-target="#editCate">
                                     <i data-feather='edit'></i>
                                     <span>تعديل</span>
                                 </a>
@@ -93,8 +93,10 @@
     $(".editBtn").on('click', function(){
         let id = $(this).attr('data-id');
         let name = $(this).attr('data-name');
+        let order = $(this).attr('data-order');
         $("#editCate .id").val(id);
         $("#editCate .name").val(name);
+        $("#editCate .order").val(order);
     })
 
     // delete category 

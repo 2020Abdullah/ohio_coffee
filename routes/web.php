@@ -5,6 +5,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SliderController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,8 +47,10 @@ Route::group(['middleware' => ['auth', 'verified']], function(){
     Route::post('contact/update', [ContactController::class, 'update'])->name('contact.update');
 
     // slider 
-    Route::get('slider/setting', [ContactController::class, 'slider'])->name('slider');
-    Route::post('slider/update', [ContactController::class, 'sliderUpdate'])->name('slider.update');
+    Route::get('slider/setting', [SliderController::class, 'slider'])->name('slider');
+    Route::post('slider/store', [SliderController::class, 'sliderAdd'])->name('slider.add');
+    Route::post('slider/update', [SliderController::class, 'sliderUpdate'])->name('slider.update');
+    Route::post('slider/delete', [SliderController::class, 'sliderDelete'])->name('slider.delete');
 
     // profile
     Route::get('profile', [ContactController::class, 'profile'])->name('profile');
