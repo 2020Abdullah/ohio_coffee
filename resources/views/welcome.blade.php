@@ -37,19 +37,26 @@
         </div>
     </header>
 
-    <!-- welcome slider -->
+    <!-- slider images -->
     <div class="main-content">
         <div id="sliderContainer" class="slider-container">
             <div class="slider-overlay"></div>
             @foreach($images as $image)
             <img src="{{ asset($image->image_path) }}" class="slider-image">
             @endforeach
-            <div class="slider-text">
-                <h2>{{ $contact->title }}</h2>
-                <p>{{ $contact->info }}</p>
-            </div>
         </div>
     </div>
+
+    <!-- ads hero -->
+    <div class="marquee-container">
+        <div class="marquee-content">
+            {{ $contact->info }}
+        </div>
+    </div>
+    {{-- <div class="ads-hero">
+        <h2>{{ $contact->title }}</h2>
+        <p>{{ $contact->info }}</p>
+    </div> --}}
 
     <!-- menu food-->
     <div class="shop" id="shop">

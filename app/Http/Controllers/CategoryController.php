@@ -17,8 +17,13 @@ class CategoryController extends Controller
             'name' => 'required'
         ], ['name.required' => 'يجب إدخال اسم التصنيف !']);
 
+        $desiredOrder = $request->input('order');
+
+        Category::where('order', '>=', $desiredOrder)->increment('order');
+
         Category::create([
-            'name' => $request->name
+            'name' => $request->name,
+            'order' => $request->order
         ]);
 
         toast('تم إضافة التصنيف بنجاح', 'success');
@@ -30,8 +35,11 @@ class CategoryController extends Controller
             'name' => 'required'
         ], ['name.required' => 'يجب إدخال اسم التصنيف !']);
 
+        $desiredOrder = $request->input('order');
+
         $category = Category::findOrFail($request->id);
         $category->name = $request->name;
+        $category->order = $desiredOrder;
         $category->save();
         toast('تم تحديث التصنيف بنجاح', 'success');
         return back();

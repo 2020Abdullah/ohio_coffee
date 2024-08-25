@@ -96,6 +96,10 @@
                 </select>
             </div>
             <div class="mb-2">
+                <label class="form-label">ترتيب الظهور</label>
+                <input type="number" class="form-control" name="order">
+            </div>
+            <div class="mb-2">
                 <button type="submit" class="btn-icon-content btn btn-success waves-effect waves-float waves-light">
                     <i data-feather='save'></i>
                     <span>حفظ البيانات</span>

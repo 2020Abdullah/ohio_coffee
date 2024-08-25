@@ -56,34 +56,6 @@ class ContactController extends Controller
         return back();
     }
 
-    public function slider(){
-        $images = Image::all();
-        return view('dashboard.slider', compact('images'));
-    }
-
-    public function sliderUpdate(Request $request){
-        // تأكد من أن الحقل 'images' موجود وأنه يحتوي على ملفات
-        $request->validate([
-            'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:5048',
-        ]);
-
-        if ($request->hasFile('images')) {
-            DB::table('images')->truncate();
-            foreach ($request->file('images') as $image) {
-                $timestamp = time(); // أو يمكنك استخدام `now()->timestamp` للحصول على الطابع الزمني
-                $filename = $timestamp . '_' . $image->getClientOriginalName();
-                $path = $image->move(public_path('images/slider/'), $filename); // تخزين الصورة في مجلد 'images' داخل مجلد 'storage/app/public'
-
-                Image::create([
-                    'image_path' => 'images/slider/' . $filename,
-                ]);
-            }
-        }
-
-        toast('تم إضافة الصور بنجاح', 'success');
-        return back();
-    }
-
     public function profile(){
         return view('dashboard.profile');
     }

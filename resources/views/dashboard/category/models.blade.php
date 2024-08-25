@@ -9,6 +9,10 @@
             </div>
             <div class="modal-body flex-grow-1">
                 <div class="mb-1">
+                    <label class="form-label">ترتيب الظهور</label>
+                    <input type="number" class="form-control" name="order">
+                </div>
+                <div class="mb-1">
                     <label class="form-label">التصنيف</label>
                     <input type="text" class="form-control" name="name" required>
                 </div>
@@ -30,6 +34,10 @@
                 <h5 class="modal-title" id="exampleModalLabel">تعديل التصنيف</h5>
             </div>
             <div class="modal-body flex-grow-1">
+                <div class="mb-1">
+                    <label class="form-label">ترتيب الظهور</label>
+                    <input type="number" class="form-control order" name="order">
+                </div>
                 <div class="mb-1">
                     <label class="form-label">التصنيف</label>
                     <input type="text" class="form-control name" name="name">

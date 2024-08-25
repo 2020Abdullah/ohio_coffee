@@ -17,10 +17,10 @@ class WelcomeController extends Controller
     }
 
     public function getMenu(){
-        $data['list_category'] = Category::all();
-        $data['list_menu'] = Menu::with('category')->where('status', 1)->get();
+        $data['list_category'] = Category::orderBy('order', 'asc')->get();
+        $data['list_menu'] = Menu::orderBy('order', 'asc')->with('category')->where('status', 1)->get();
         $data['contact'] = Contact::latest()->first();
-        $data['images'] = Image::all();
+        $data['images'] = Image::orderBy('order', 'asc')->get();
         return view('welcome', $data);
     }
 }

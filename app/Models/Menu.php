@@ -17,6 +17,7 @@ class Menu extends Model
         'price',
         'category_id',
         'status',
+        'order'
     ];
 
     public function category(){
