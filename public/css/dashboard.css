@@ -123,7 +123,7 @@ border-color: #28c76f;
 }
 .img-cover {
     width: 100%;
-    height: 100%; 
+    height: 100%;
     object-fit: cover;
 }
 .novel_card .novel_content {

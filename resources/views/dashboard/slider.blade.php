@@ -5,7 +5,7 @@
     <div class="row breadcrumbs-top">
         <div class="col-md-10">
             <h2 class="content-header-title float-start mb-0">
-                صفحة الإعدادات 
+                صفحة الإعدادات
             </h2>
             <div class="breadcrumb-wrapper">
                 <ol class="breadcrumb">
@@ -59,16 +59,17 @@
             <div class="card-body py-2 my-25">
                 <div class="container">
                     @error('images.*')
-                        <div class="alert alert-danger">
-                            <div class="alert-body">
-                                <span>{{ $message }}</span>
-                            </div>
+                    <div class="alert alert-danger">
+                        <div class="alert-body">
+                            <span>{{ $message }}</span>
                         </div>
+                    </div>
                     @enderror
-                    
+
                     <div class="slider-container">
+                        <div class="slider-overlay"></div>
                         @foreach($images as $image)
-                            <img src="{{ asset($image->image_path) }}" class="slider-image">
+                        <img src="{{ asset($image->image_path) }}" class="slider-image">
                         @endforeach
                         <button class="slider-button prev" onclick="prevSlide()">&#10094;</button>
                         <button class="slider-button next" onclick="nextSlide()">&#10095;</button>
@@ -101,14 +102,13 @@
 @section('js')
 
 <script>
-
     // upload images with preview
     document.getElementById('fileInput').addEventListener('change', function(event) {
         const imagePreviewContainer = document.getElementById('imagePreview');
         imagePreviewContainer.innerHTML = ''; // Clear previous images
-        
+
         const files = event.target.files;
-        
+
         for (let i = 0; i < files.length; i++) {
             const file = files[i];
             const reader = new FileReader();
@@ -119,7 +119,7 @@
                 imgElement.className = 'preview-image';
                 imagePreviewContainer.appendChild(imgElement);
             };
-            
+
             reader.readAsDataURL(file);
         }
     });
