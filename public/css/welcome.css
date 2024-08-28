@@ -55,11 +55,12 @@ header .logo img {
 
 header nav ul {
     display: flex;
+    align-items: center;
+    gap: 10px;
     list-style: none;
 }
 
 header nav ul li a {
-    margin: 5px 20px;
     font-size: 18px;
     color: white;
     padding: 10px 10px;
@@ -522,6 +523,25 @@ header nav ul li a:hover {
 
 .scroll-to-top.show {
     opacity: 1; /* إظهار الزر عند التمرير لأسفل */
+}
+
+/* google map location */
+.map-container {
+    position: relative;
+    padding-bottom: 56.25%; /* نسبة 16:9 لجعل الفيديو متجاوبًا */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background: #f9f9f9;
+}
+
+.map-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
 }
 
 /* Responsive */
