@@ -254,7 +254,7 @@ header nav ul li a:hover {
     color: white;
 }
 
-/* Shop */
+/* menu header */
 
 .shop {
     /* padding-top: 1rem; */
@@ -281,13 +281,16 @@ header nav ul li a:hover {
     height: 100%;
 }
 .shop .shop-header .menu-category {
-    display: flex;
+    display: inline-flex;
+    padding: 0;
+    margin: 0;
     align-items: center;
     flex-wrap: nowrap;
     scrollbar-width: none;
     position: relative;
     gap: 0.5rem;
-    overflow-x: auto;
+    overflow-x: scroll;
+    white-space: nowrap;
 }
 .shop .shop-header .menu-category .category-item {
     color: #fff;
@@ -495,6 +498,30 @@ header nav ul li a:hover {
 .footer .footer-box .copyright a {
     text-decoration: none;
     color: var(--text-color1);
+}
+
+/* scroll to top */
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px; 
+    right: 20px; 
+    background-color: var(--text-color1);
+    color: var(--bg1); 
+    border: none; 
+    border-radius: 50%;
+    width: 50px; 
+    height: 50px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    cursor: pointer; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    transition: opacity 0.3s; 
+    opacity: 0; 
+}
+
+.scroll-to-top.show {
+    opacity: 1; /* إظهار الزر عند التمرير لأسفل */
 }
 
 /* Responsive */

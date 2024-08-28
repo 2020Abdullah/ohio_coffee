@@ -19,6 +19,10 @@
 </head>
 
 <body>
+    <!-- scroll to top -->
+        <button id="scrollToTop" class="scroll-to-top">
+            <i class="fas fa-hand-point-up"></i>
+        </button>
     <!-- header -->
     <header>
         <div class="container">
@@ -62,7 +66,7 @@
     <div class="shop" id="shop">
         <div class="shop-box">
             <div class="shop-header">
-                <ul class="menu-category" style="padding-right: 0;">
+                <ul class="menu-category">
                     <div class="category-item">
                         <button class="btn category-btn active" data-filter="*">All</button>
                     </div>
@@ -222,6 +226,21 @@
             }
 
             window.onload = startSlider;
+
+            // إظهار الزر عند التمرير لأسفل
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 100) { // يظهر الزر عندما يتم التمرير لأكثر من 100 بكسل
+                    $('#scrollToTop').addClass('show');
+                } else {
+                    $('#scrollToTop').removeClass('show');
+                }
+            });
+
+            // التمرير إلى أعلى الصفحة عند النقر على الزر
+            $('#scrollToTop').click(function() {
+                $('html, body').animate({scrollTop: 0}, 500); // التمرير بسلاسة إلى الأعلى
+            });
+
         });
     </script>
 </body>
