@@ -19,6 +19,30 @@
 </head>
 
 <body>
+    <!-- model googleMap -->
+    <div class="modal fade" id="location" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">موقع الشركة</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3452.1604164623177!2d31.300789875555424!3d30.08959177490095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583f6821677047%3A0x5baa7a74d822578b!2sOhio%2022%20Cafe!5e0!3m2!1sen!2seg!4v1724878568107!5m2!1sen!2seg" width="100%" height="450" style="border:0;"  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">حسناً</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- scroll to top -->
+        <button id="scrollToTop" class="scroll-to-top">
+            <i class="fas fa-hand-point-up"></i>
+        </button>
     <!-- header -->
     <header>
         <div class="container">
@@ -27,7 +51,24 @@
                 <nav>
                     <ul style="padding: 0;">
                         <li>
-                            <a href="#contact">Contact</a>
+                            <a href="https://www.{{ $contact->facebook_link }}" target="_blank">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://wa.me/{{ $contact->phone }}" target="_blank">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.{{ $contact->instgram_link }}" target="_blank">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.{{ $contact->instgram_link }}" data-bs-toggle="modal" data-bs-target="#location">
+                                <i class="fa fa-map-marker"></i>
+                            </a>
                         </li>
                     </ul>
                 </nav>
@@ -63,7 +104,7 @@
     <div class="shop" id="shop">
         <div class="shop-box">
             <div class="shop-header">
-                <ul class="menu-category" style="padding-right: 0;">
+                <ul class="menu-category">
                     <div class="category-item">
                         <button class="btn category-btn active" data-filter="*">All</button>
                     </div>
@@ -223,6 +264,21 @@
             }
 
             window.onload = startSlider;
+
+            // إظهار الزر عند التمرير لأسفل
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 100) { // يظهر الزر عندما يتم التمرير لأكثر من 100 بكسل
+                    $('#scrollToTop').addClass('show');
+                } else {
+                    $('#scrollToTop').removeClass('show');
+                }
+            });
+
+            // التمرير إلى أعلى الصفحة عند النقر على الزر
+            $('#scrollToTop').click(function() {
+                $('html, body').animate({scrollTop: 0}, 500); // التمرير بسلاسة إلى الأعلى
+            });
+
         });
     </script>
 </body>
