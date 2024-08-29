@@ -23,16 +23,17 @@
     <header>
         <div class="container">
             <div class="header-top">
-                <div class="logo">
-                    <img src="{{ asset($contact->logo) }}" alt="logo.jpg">
-                </div>
+
                 <nav>
-                    <ul>
+                    <ul style="padding: 0;">
                         <li>
                             <a href="#contact">Contact</a>
                         </li>
                     </ul>
                 </nav>
+                <div class="logo">
+                    <img src="{{ asset($contact->logo) }}" alt="logo.jpg">
+                </div>
             </div>
         </div>
     </header>
@@ -55,7 +56,7 @@
     </div>
     {{-- <div class="ads-hero">
         <h2>{{ $contact->title }}</h2>
-        <p>{{ $contact->info }}</p>
+    <p>{{ $contact->info }}</p>
     </div> --}}
 
     <!-- menu food-->

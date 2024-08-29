@@ -49,7 +49,7 @@ header .header-top {
 
 header .logo img {
     width: 100%;
-    height: 70px;
+    height: 90px;
     margin-top: 10px;
 }
 
@@ -109,7 +109,7 @@ header nav ul li a:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* الخلفية الشفافة باللون الأسود بدرجة 50% */
+    background-color: rgba(0, 0, 0, 0.2); /* الخلفية الشفافة باللون الأسود بدرجة 50% */
     z-index: 1; /* اجعلها فوق الصورة */
 }
 
@@ -156,15 +156,17 @@ header nav ul li a:hover {
     white-space: nowrap;
     animation: marquee 30s linear infinite;
     font-size: 24px;
-    padding-left: 100%;
+    /* padding-left: 100%; */
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
 }
 
 @keyframes marquee {
     from {
-        transform: translateX(100%);
+        transform: translateX(-100%);
     }
     to {
-        transform: translateX(-100%);
+        transform: translateX(100%);
     }
 }
 
@@ -504,8 +506,8 @@ header nav ul li a:hover {
 
     header {
         flex-direction: column;
-        height: 150px;
-        background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+        height: 110px;
+        /* background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)); */
     }
 
     .menu-header .logo a {
