@@ -23,7 +23,7 @@ class MenuEditRequest extends FormRequest
     {
         return [
             'name_ar' => 'required',
-            'name_en' => 'required',
+            // 'name_en' => 'required',
             'price' => 'required',
             'category_id' => 'required',
         ];
@@ -33,7 +33,7 @@ class MenuEditRequest extends FormRequest
     {
         return [
             'name_ar.required' => 'يجب إدخال اسم التصنيف بالعربية !',
-            'name_en.required' => 'يجب إدخال اسم التصنيف بالإنجليزية !',
+            // 'name_en.required' => 'يجب إدخال اسم التصنيف بالإنجليزية !',
             'price.required' => 'يجب وضع سعر للوجبة !',
             'category_id.required' => 'يجب اختيار تصنيف للوجبة !',
         ];

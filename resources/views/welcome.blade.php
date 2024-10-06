@@ -22,27 +22,27 @@
     <!-- model googleMap -->
     <div class="modal fade" id="location" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">موقع الشركة</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="map-container">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3452.1604164623177!2d31.300789875555424!3d30.08959177490095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583f6821677047%3A0x5baa7a74d822578b!2sOhio%2022%20Cafe!5e0!3m2!1sen!2seg!4v1724878568107!5m2!1sen!2seg" width="100%" height="450" style="border:0;"  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">موقع الشركة</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3452.1604164623177!2d31.300789875555424!3d30.08959177490095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583f6821677047%3A0x5baa7a74d822578b!2sOhio%2022%20Cafe!5e0!3m2!1sen!2seg!4v1724878568107!5m2!1sen!2seg" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">حسناً</button>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">حسناً</button>
-            </div>
-        </div>
         </div>
     </div>
 
     <!-- scroll to top -->
-        <button id="scrollToTop" class="scroll-to-top">
-            <i class="fas fa-hand-point-up"></i>
-        </button>
+    <button id="scrollToTop" class="scroll-to-top">
+        <i class="fas fa-hand-point-up"></i>
+    </button>
     <!-- header -->
     <header>
         <div class="container">
@@ -135,7 +135,16 @@
                                         <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12" style="padding: 4px;">
                                             <div class="card">
                                                 <div class="card-image">
-                                                    <img src="{{ asset($menu->image) }}">
+
+                                                    @if($menu->image)
+                                                    <img src="{{ asset($menu->image) }}" alt="Menu Image">
+                                                    @else
+                                                    <img src="{{ asset($contact->logo) }}" alt="Default Image">
+                                                    @endif
+
+
+
+                                                    <!-- <img src="{{ asset($menu->image) }}"> -->
                                                     <div class="category">
                                                         <i class="fa fa-star"></i>
                                                         <h3>{{ $menu->category->name }}</h3>
@@ -276,7 +285,9 @@
 
             // التمرير إلى أعلى الصفحة عند النقر على الزر
             $('#scrollToTop').click(function() {
-                $('html, body').animate({scrollTop: 0}, 500); // التمرير بسلاسة إلى الأعلى
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 500); // التمرير بسلاسة إلى الأعلى
             });
 
         });

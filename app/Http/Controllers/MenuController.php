@@ -22,7 +22,7 @@ class MenuController extends Controller
 
     public function store(MenuRequest $request){
         $menu = new Menu();
-        // upload file image 
+        // upload file image
         if($request->hasFile('image')){
             $generateFile = time() . '.' . $request->image->extension();
             $folder = public_path('images/menu/');
@@ -57,9 +57,9 @@ class MenuController extends Controller
     public function update(MenuEditRequest $request){
         $menu = Menu::findOrFail($request->id);
 
-        // upload file image 
+        // upload file image
         if($request->hasFile('image')){
-            // delete old image 
+            // delete old image
             if($menu->image !== null){
                 $file_path = public_path($menu->image);
                 if($file_path){

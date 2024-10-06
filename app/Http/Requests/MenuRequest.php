@@ -23,7 +23,7 @@ class MenuRequest extends FormRequest
     {
         return [
             'name_ar' => 'required',
-            'name_en' => 'required',
+            // 'name_en' => 'required',
             'price' => 'required',
             'image' => 'required|image',
             'category_id' => 'required',
@@ -34,7 +34,7 @@ class MenuRequest extends FormRequest
     {
         return [
             'name_ar.required' => 'يجب إدخال اسم التصنيف بالعربية !',
-            'name_en.required' => 'يجب إدخال اسم التصنيف بالإنجليزية !',
+            // 'name_en.required' => 'يجب إدخال اسم التصنيف بالإنجليزية !',
             'price.required' => 'يجب وضع سعر للوجبة !',
             'image.required' => 'يجب رفع صورة للطعام !',
             'image.image' => 'يجب أن يكون الملف من نوع صورة !',
