@@ -48,10 +48,10 @@ class SliderController extends Controller
 
         if ($request->hasFile('image')) {
             // delete old image
-            $file_path = public_path($updateImg->image_path);
-            if($file_path){
-                unlink($file_path);
-            }
+            // $file_path = public_path($updateImg->image_path);
+            // if($file_path){
+            //     unlink($file_path);
+            // }
 
             // upload New Image
 
@@ -72,10 +72,10 @@ class SliderController extends Controller
     public function sliderDelete(Request $request){
         $image = Image::findOrFail($request->id);
         // delete image file 
-        $file_path = public_path($image->image_path);
-        if($file_path){
-            unlink($file_path);
-        }
+        // $file_path = public_path($image->image_path);
+        // if($file_path){
+        //     unlink($file_path);
+        // }
         $image->delete();
         toast('تم حذف الصورة بنجاح', 'success');
         return back();

@@ -59,13 +59,16 @@ class MenuController extends Controller
 
         // upload file image 
         if($request->hasFile('image')){
+            
             // delete old image 
+            /*
             if($menu->image !== null){
                 $file_path = public_path($menu->image);
                 if($file_path){
                     unlink($file_path);
                 }
             }
+            */
 
             // upload New Image
             $generateFile = time() . '.' . $request->image->extension();
